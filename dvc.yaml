@@ -1,0 +1,9 @@
+stages:
+  get_data:
+    cmd: python src/get_data.py
+    deps:
+    - config/main.yaml
+    - src/get_data.py
+    outs:
+    - data/raw:
+        persist: true

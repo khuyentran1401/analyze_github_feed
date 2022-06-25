@@ -1,0 +1,11 @@
+data/*/*
+__pycache__
+.ipynb_checkpoints
+*.ipynb
+.env
+*_cache
+venv
+outputs
+.env
+
+!data/*/.gitkeep
