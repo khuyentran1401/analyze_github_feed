@@ -2,4 +2,5 @@
 
 import sys
 
-sys.path.append("./src")
+sys.path.append("./development")
+sys.path.append("./app")

@@ -4,12 +4,11 @@ from datetime import timedelta
 
 import requests
 from dotenv import load_dotenv
+from helper import load_config
 from omegaconf import DictConfig
 from prefect import flow, task
 from prefect.tasks import task_input_hash
 from pydash import py_
-
-from helper import load_config
 
 
 @task

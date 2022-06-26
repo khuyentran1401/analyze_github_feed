@@ -2,8 +2,8 @@ import pandas as pd
 from omegaconf import OmegaConf
 from pandas.testing import assert_frame_equal
 
-from src.process_data import (create_dataframe_from_dict, get_python_repos,
-                              get_relevant_info)
+from development.process_data import (create_dataframe_from_dict,
+                                      get_python_repos, get_relevant_info)
 
 
 def test_get_python_repos():

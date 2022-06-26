@@ -1,4 +1,4 @@
-from src.get_data import get_starred_repo_urls
+from development.get_data import get_starred_repo_urls
 
 
 def test_get_starred_repo_urls():
