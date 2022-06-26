@@ -9,7 +9,7 @@ def filter_based_on_topics(topics: list, data: pd.DataFrame):
     exploded = data.explode("topics")
     filtered = exploded[exploded.topics.isin(topics)]
     return (
-        filtered.groupby(["full_name", "html_url"])["topics"]
+        filtered.groupby(["full_name", "html_url", "description"])["topics"]
         .apply(list)
         .reset_index(drop=False)
     )

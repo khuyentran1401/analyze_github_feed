@@ -19,7 +19,12 @@ def get_authentication():
     return {"username": username, "token": token}
 
 
-@task(cache_key_fn=task_input_hash, cache_expiration=timedelta(days=1))
+@task(
+    cache_key_fn=task_input_hash,
+    cache_expiration=timedelta(days=1),
+    retries=3,
+    retry_delay_seconds=60,
+)
 def get_data_from_api(auth: dict):
 
     response = requests.get(
@@ -35,7 +40,12 @@ def get_starred_repo_urls(data: list):
     return py_(data).filter({"type": "WatchEvent"}).map("repo.url").value()
 
 
-@task(cache_key_fn=task_input_hash, cache_expiration=timedelta(days=1))
+@task(
+    cache_key_fn=task_input_hash,
+    cache_expiration=timedelta(days=1),
+    retries=3,
+    retry_delay_seconds=60,
+)
 def get_info_all_repo(auth: dict, repo_urls: list):
     data = []
     for url in repo_urls:
