@@ -1,6 +1,5 @@
 import json
 from datetime import timedelta
-from re import L
 from typing import List
 
 import pandas as pd
@@ -39,6 +38,13 @@ def create_dataframe_from_dict(data: dict):
 
 
 @task
+def remove_duplicates(data: pd.DataFrame, config: DictConfig):
+    subset = list(config.relevant_info)
+    subset.remove("topics")
+    return data.drop_duplicates(subset=subset).reset_index(drop=True)
+
+
+@task
 def save_data(data: pd.DataFrame, config: DictConfig):
     data.to_pickle(config.data.processed)
 
@@ -50,7 +56,8 @@ def process_data():
     python_repos = get_python_repos(data)
     infos = get_relevant_info(python_repos, config)
     df = create_dataframe_from_dict(infos)
-    save_data(df, config)
+    unique_df = remove_duplicates(df, config)
+    save_data(unique_df, config)
 
 
 if __name__ == "__main__":
