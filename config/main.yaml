@@ -1,3 +1,12 @@
 data:
   raw:
-    data/raw/out.json
+    data/raw/repos.json
+  processed:
+    data/processed/python_repos.pkl
+
+relevant_info:
+  - full_name
+  - html_url
+  - description
+  - topics
+  - stargazers_count
