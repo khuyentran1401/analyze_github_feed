@@ -9,6 +9,7 @@ def test_filter_based_on_topics():
         {
             "full_name": ["a", "b"],
             "html_url": ["a", "b"],
+            "description": ["a", "b"],
             "topics": [["1", "2", "3"], ["1", "2"]],
         }
     )
@@ -18,6 +19,7 @@ def test_filter_based_on_topics():
         {
             "full_name": ["a", "b"],
             "html_url": ["a", "b"],
+            "description": ["a", "b"],
             "topics": [["1", "2"], ["1", "2"]],
         }
     )

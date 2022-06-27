@@ -10,8 +10,9 @@ def test_get_python_repos():
     data = [
         {"language": "Python", "url": "abc"},
         {"language": "Go", "url": "abc"},
+        {"language": "Javascript", "url": "abc"},
     ]
-    res = get_python_repos.fn(data)
+    res = get_python_repos.fn(data, language="Python")
     assert res == [{"language": "Python", "url": "abc"}]
 
 

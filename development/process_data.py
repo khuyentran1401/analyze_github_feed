@@ -18,8 +18,8 @@ def get_data(config: DictConfig):
 
 
 @task(cache_key_fn=task_input_hash, cache_expiration=timedelta(days=1))
-def get_python_repos(data: List[dict]):
-    return py_(data).filter({"language": "Python"}).value()
+def filter_language(data: List[dict], language: str):
+    return py_(data).filter({"language": language}).value()
 
 
 @task(cache_key_fn=task_input_hash, cache_expiration=timedelta(days=1))
@@ -44,19 +44,19 @@ def remove_duplicates(data: pd.DataFrame, config: DictConfig):
 
 
 @task
-def save_data(data: pd.DataFrame, config: DictConfig):
+def save_to_pickle(data: pd.DataFrame, config: DictConfig):
     data.to_pickle(config.data.processed)
 
 
 @flow
-def process_data():
+def process_data(language: str = "Python"):
     config = load_config()
     data = get_data(config)
-    python_repos = get_python_repos(data)
+    python_repos = filter_language(data, language)
     infos = get_relevant_info(python_repos, config)
     df = create_dataframe_from_dict(infos)
     unique_df = remove_duplicates(df, config)
-    save_data(unique_df, config)
+    save_to_pickle(unique_df, config)
 
 
 if __name__ == "__main__":

@@ -1,8 +1,8 @@
 data:
   raw:
-    data/raw/repos.json
+    ../data/raw/repos.json
   processed:
-    data/processed/python_repos.pkl
+    ../data/processed/python_repos.pkl
 
 relevant_info:
   - full_name
