@@ -1,8 +1,6 @@
 from collections import Counter
 
 import pandas as pd
-from pyparsing import col
-from sqlalchemy import column
 
 
 def filter_based_on_topics(topics: list, data: pd.DataFrame):

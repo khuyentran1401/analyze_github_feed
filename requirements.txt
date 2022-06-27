@@ -1,5 +1,6 @@
 hydra-core==1.2.0
 matplotlib==3.5.2
+omegaconf==2.2.2
 pandas==1.4.3
 pendulum==2.1.2
 plotly==5.9.0
@@ -7,6 +8,5 @@ prefect==2.0b7
 pydash==5.1.0
 python-dotenv==0.20.0
 requests==2.28.0
-SQLAlchemy==1.4.39
 streamlit==1.10.0
 wordcloud==1.8.1
