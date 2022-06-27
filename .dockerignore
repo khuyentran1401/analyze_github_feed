@@ -1,0 +1,9 @@
+data
+__pycache__
+.ipynb_checkpoints
+notebook
+.env
+*_cache
+venv
+outputs
+.env
