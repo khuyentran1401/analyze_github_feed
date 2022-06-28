@@ -122,11 +122,17 @@ prefect deployment create deployment.py
 ### View the dashboard
 Now go to http://127.0.0.1:4200/ and click Deployments then click the deployment `Github-repo-flow`:
 ![](images/deployment.png)
+
 Then click Run in the top right corner:
+
 ![](images/deployment_run.png)
+
 Then click Flow Runs on the left menu:
+
 ![](images/menu.png)
+
 And you will see that your flow is scheduled!
+
 ![](images/flows.png)
 
 Now if you don't turn off your machine or shut down your agent, the script to pull and process data will run every day.
