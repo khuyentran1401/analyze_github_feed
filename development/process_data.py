@@ -19,6 +19,7 @@ def get_data(config: DictConfig):
 
 @task(cache_key_fn=task_input_hash, cache_expiration=timedelta(days=1))
 def filter_language(data: List[dict], language: str):
+    language = language.title()
     return py_(data).filter({"language": language}).value()
 
 

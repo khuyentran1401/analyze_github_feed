@@ -7,5 +7,7 @@ __pycache__
 venv
 outputs
 .env
+.DS_Store
+.vscode
 
 !data/*/.gitkeep

@@ -1,4 +1,6 @@
-from development.get_data import get_starred_repo_urls
+from prefect.testing.utilities import prefect_test_harness
+
+from development.get_data import get_data, get_starred_repo_urls
 
 
 def test_get_starred_repo_urls():
