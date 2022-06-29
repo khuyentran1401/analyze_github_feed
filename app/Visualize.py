@@ -1,10 +1,11 @@
+from collections import Counter
+
 import matplotlib.pyplot as plt
 import pandas as pd
 import plotly.express as px
 import streamlit as st
 from hydra import compose, initialize
 from omegaconf import DictConfig
-from process_data import get_top_10_topics
 from pydash import py_
 from wordcloud import WordCloud
 
@@ -24,6 +25,17 @@ def get_all_topics(data: pd.DataFrame):
     """Get unique tags from all repositories"""
     nested_topics = list(data["topics"].values)
     return py_.flatten(nested_topics)
+
+
+def get_top_10_topics(topics: list):
+    """Get the topics with the highest count"""
+    count = Counter(topics)
+    data = (
+        pd.DataFrame(list(count.items()), columns=["name", "count"])
+        .sort_values(by="count", ascending=False)
+        .reset_index(drop=True)
+    )
+    return data[:10]
 
 
 def make_wordcloud(topics: list):

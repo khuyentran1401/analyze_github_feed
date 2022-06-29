@@ -1,11 +1,21 @@
 import pandas as pd
 import streamlit as st
-from process_data import filter_based_on_topics
 from Visualize import get_all_topics, load_config, load_data
 
 
 def get_unique_topic_selection(topics: list):
     return list(set(topics))
+
+
+def filter_based_on_topics(topics: list, data: pd.DataFrame):
+    """Only show the specified topics"""
+    exploded = data.explode("topics")
+    filtered = exploded[exploded.topics.isin(topics)]
+    return (
+        filtered.groupby(["full_name", "html_url", "description"])["topics"]
+        .apply(list)
+        .reset_index(drop=False)
+    )
 
 
 def make_link_clickable(link: str):
