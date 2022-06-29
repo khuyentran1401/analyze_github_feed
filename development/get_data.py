@@ -25,7 +25,7 @@ def get_authentication():
     retries=3,
     retry_delay_seconds=60,
 )
-def get_data_from_api(auth: dict):
+def get_general_info_of_repos(auth: dict):
 
     response = requests.get(
         f"https://api.github.com/users/{auth['username']}/received_events/public?per_page=100",
@@ -46,7 +46,7 @@ def get_starred_repo_urls(data: list):
     retries=3,
     retry_delay_seconds=60,
 )
-def get_info_all_repo(auth: dict, repo_urls: list):
+def get_specific_info_of_repos(auth: dict, repo_urls: list):
     data = []
     for url in repo_urls:
         response = requests.get(
@@ -67,9 +67,9 @@ def save_data(data: dict, config: DictConfig):
 def get_data():
     config = load_config()
     auth = get_authentication()
-    data = get_data_from_api(auth)
+    data = get_general_info_of_repos(auth)
     urls = get_starred_repo_urls(data)
-    info = get_info_all_repo(auth, urls)
+    info = get_specific_info_of_repos(auth, urls)
     save_data(info, config)
 
 
