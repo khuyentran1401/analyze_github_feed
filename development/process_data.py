@@ -19,12 +19,14 @@ def get_data(config: DictConfig):
 
 @task(cache_key_fn=task_input_hash, cache_expiration=timedelta(days=1))
 def filter_language(data: List[dict], language: str):
+    """Only return repositories that are written in the specified language"""
     language = language.title()
     return py_(data).filter({"language": language}).value()
 
 
 @task(cache_key_fn=task_input_hash, cache_expiration=timedelta(days=1))
 def get_relevant_info(data: List[dict], config: DictConfig):
+    """Get only the information that we care about in each repo"""
     infos = {}
     for info in config.relevant_info:
         value = py_(data).map(info).value()
@@ -39,6 +41,7 @@ def create_dataframe_from_dict(data: dict):
 
 @task
 def remove_duplicates(data: pd.DataFrame, config: DictConfig):
+    """Remove the duplicates of a repository"""
     subset = list(config.relevant_info)
     subset.remove("topics")
     return data.drop_duplicates(subset=subset).reset_index(drop=True)

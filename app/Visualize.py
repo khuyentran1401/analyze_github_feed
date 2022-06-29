@@ -21,6 +21,7 @@ def load_data(config: DictConfig):
 
 
 def get_all_topics(data: pd.DataFrame):
+    """Get unique tags from all repositories"""
     nested_topics = list(data["topics"].values)
     return py_.flatten(nested_topics)
 
