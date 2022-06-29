@@ -14,7 +14,7 @@ def get_and_process_data(language: str = "Python"):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Flow arguments")
     parser.add_argument(
-        "language",
+        "--language",
         type=str,
         default="Python",
         help="Language of the repositories that will be saved in your machine.",

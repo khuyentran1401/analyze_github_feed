@@ -44,7 +44,7 @@ python get_and_process_data.py
 ```
 By default, the script only saves Python repositories and filters out other languages. If you are interested in getting the repositories in other languages, type:
 ```bash
-python get_and_process_data.py <YOUR-FAVORITE-LANGUAGE>
+python get_and_process_data.py --language <YOUR-FAVORITE-LANGUAGE>
 ```
 For example, if you want to get all repos in Java, type:
 ```bash
