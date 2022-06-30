@@ -48,7 +48,7 @@ python get_and_process_data.py --language <YOUR-FAVORITE-LANGUAGE>
 ```
 For example, if you want to get all repos in Java, type:
 ```bash
-python get_and_process_data.py Java
+python get_and_process_data.py --language Java
 ```
 
 ### View Your Dashboard
