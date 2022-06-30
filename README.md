@@ -11,6 +11,13 @@ Wouldn't it be nice if you can create a personal dashboard showing the repositor
 ![](images/streamlit_app.gif)
 
 This repository allows you to do exactly that.
+## Overview of the Technology Stack
+In a high level, this project uses:
+- [GitHub API](https://docs.github.com/en/rest) to write scripts to pull the data from GitHub
+- [Streamlit](https://streamlit.io/) to create a dashboard displaying the statistics of the processed data.
+- [Prefect](https://www.prefect.io/) to schedule to run the scripts to get and process data daily
+
+![](images/diagram.png)
 
 ## How to Create a Dashboard in Your Local Machine
 ### Set Up the Environment
