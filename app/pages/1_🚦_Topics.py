@@ -1,6 +1,6 @@
 import pandas as pd
 import streamlit as st
-from Visualize import get_all_topics, load_config, load_data
+from Visualize import format_table, get_all_topics, load_config, load_data
 
 
 def get_unique_topic_selection(topics: list):
@@ -16,22 +16,6 @@ def filter_based_on_topics(topics: list, data: pd.DataFrame):
         .apply(list)
         .reset_index(drop=False)
     )
-
-
-def make_link_clickable(link: str):
-    text = link.split("=")[0]
-    return f'<a target="_blank" href="{link}">{text}</a>'
-
-
-def format_topics(topics: list):
-    topics.sort()
-    return ", ".join(topics)
-
-
-def format_table(df: pd.DataFrame):
-    df["html_url"] = df["html_url"].apply(make_link_clickable)
-    df["topics"] = df["topics"].apply(format_topics)
-    return df
 
 
 def create_ui(data: pd.DataFrame, topics: list):

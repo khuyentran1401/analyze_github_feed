@@ -21,6 +21,23 @@ def load_data(config: DictConfig):
     return data.sort_values(by="stargazers_count", ascending=False)
 
 
+def make_link_clickable(link: str):
+    text = link.split("=")[0]
+    return f'<a target="_blank" href="{link}">{text}</a>'
+
+
+def format_topics(topics: list):
+    topics.sort()
+    return ", ".join(topics)
+
+
+def format_table(df: pd.DataFrame):
+    data = df.copy()
+    data["html_url"] = data["html_url"].apply(make_link_clickable)
+    data["topics"] = data["topics"].apply(format_topics)
+    return data
+
+
 def get_all_topics(data: pd.DataFrame):
     """Get unique tags from all repositories"""
     nested_topics = list(data["topics"].values)
@@ -67,7 +84,8 @@ def create_app():
 
     st.title("Python Repositories")
     st.header("All Repositories")
-    st.dataframe(data)
+    formatted_df = format_table(data)
+    st.write(formatted_df.to_html(escape=False), unsafe_allow_html=True)
 
     st.header("Top 10 most popular repositories")
     star_plot = px.bar(data[:10], x="full_name", y="stargazers_count")

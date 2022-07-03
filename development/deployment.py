@@ -1,9 +1,12 @@
+import sys
 from datetime import timedelta
 
 import pendulum
 from prefect.deployments import DeploymentSpec
 from prefect.flow_runners import SubprocessFlowRunner
 from prefect.orion.schemas.schedules import IntervalSchedule
+
+sys.path.append("../development")
 
 schedule = IntervalSchedule(
     interval=timedelta(days=1),
